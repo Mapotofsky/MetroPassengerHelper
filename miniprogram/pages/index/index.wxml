@@ -24,9 +24,12 @@
       </view>
     </view>
   </view>
+  
+  <!--my code-->
+  <button bindtap="chooseMyFile">upload file</button>
+  <!--my code-->
 
   <view class="environment" bindtap="onChangeShowEnvChoose">当前环境 {{ selectedEnv.alias }}</view>
 
   <cloud-tip-modal showUploadTipProps="{{showUploadTip}}"></cloud-tip-modal>
-
 </view>

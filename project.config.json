@@ -29,15 +29,15 @@
             "outputPath": ""
         },
         "enableEngineNative": false,
-        "useIsolateContext": true,
+        "useIsolateContext": false,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
         "minifyWXSS": true,
         "disableUseStrict": false,
+        "minifyWXML": true,
         "showES6CompileOption": false,
-        "useCompilerPlugins": false,
-        "minifyWXML": true
+        "useCompilerPlugins": false
     },
     "appid": "wx402c4e44754dd307",
     "projectname": "passenger",

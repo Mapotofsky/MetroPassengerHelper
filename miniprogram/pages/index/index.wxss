@@ -92,3 +92,9 @@ page {
   font-size: 24rpx;
   margin-top: 25%;
 }
+
+button {
+  margin: 28rpx;
+  border: 5px;
+  background-color: white;
+}

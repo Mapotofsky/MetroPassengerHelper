@@ -3,6 +3,57 @@
 const { envList } = require('../../envList.js');
 
 Page({
+  /* my code */
+  // 选择文件
+  chooseMyFile() {
+    let that = this
+    wx.chooseMessageFile({
+      count: 1,
+      type: 'file',
+      success(res) {
+        let path = res.tempFiles[0].path;
+        let name = res.tempFiles[0].name;
+        name = name.replace('.csv', '');
+        console.log("choose file success", path, name);
+        that.uploadMyFile(path, name);
+      }
+    })
+  },
+
+  // 上传到云存储
+  uploadMyFile(path, name) {
+    let that = this;
+    wx.cloud.uploadFile({
+      cloudPath: new Date().getTime() + '.csv',
+      filePath: path,
+      success: res => {
+        console.log("upload file success", res.fileID)
+        that.resolve(res.fileID, name)
+      },
+      fail: err => {
+        console.log("upload file fail", err)
+      }
+    })
+  },
+
+  // 使用云函数解析
+  resolve(fileID, name) {
+    wx.cloud.callFunction({
+      name: "csv",
+      data: {
+        fileID: fileID,
+        name: name
+      },
+      success(res) {
+        console.log("resolve success", res)
+      },
+      fail(res) {
+        console.log("resolve fail", res)
+      }
+    })
+  },
+  /* my code */
+
   data: {
     showUploadTip: false,
     powerList: [{
