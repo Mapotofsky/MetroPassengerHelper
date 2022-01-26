@@ -6,16 +6,24 @@ Page({
   /* my code */
   // 选择文件
   chooseMyFile() {
-    let that = this
+    let that = this;
+    let count = 16;
+    // 选择文件数量范围0到100
+    // 建议别太大，出错了会后悔的
     wx.chooseMessageFile({
-      count: 1,
+      count: count,
       type: 'file',
       success(res) {
-        let path = res.tempFiles[0].path;
-        let name = res.tempFiles[0].name;
-        name = name.replace('.csv', '');
-        console.log("choose file success", path, name);
-        that.uploadMyFile(path, name);
+        // 可以选择多个文件
+        var num = 0;
+        while(num < count) {
+          let path = res.tempFiles[num].path;
+          let name = res.tempFiles[num].name;
+          name = name.replace('.csv', '');
+          console.log("choose file success", path, name);
+          that.uploadMyFile(path, name);
+          num += 1;
+        }
       }
     })
   },
@@ -36,7 +44,7 @@ Page({
     })
   },
 
-  // 使用云函数解析
+  // 本地好像用不了nodejs，故使用云函数解析
   resolve(fileID, name) {
     wx.cloud.callFunction({
       name: "csv",
@@ -51,6 +59,14 @@ Page({
         console.log("resolve fail", res)
       }
     })
+  },
+
+  test() {
+    var dic = {};
+    for(var i = 0; i < 10; ++i) {
+      dic[i] = i * i;
+    }
+    console.log(dic);
   },
   /* my code */
 

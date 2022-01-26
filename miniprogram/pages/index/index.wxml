@@ -27,6 +27,7 @@
   
   <!--my code-->
   <button bindtap="chooseMyFile">upload file</button>
+  <button bindtap="test">test</button>
   <!--my code-->
 
   <view class="environment" bindtap="onChangeShowEnvChoose">当前环境 {{ selectedEnv.alias }}</view>
