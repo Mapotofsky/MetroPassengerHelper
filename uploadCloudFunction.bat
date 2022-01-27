@@ -1,1 +1,0 @@
-"D:\prolificacy\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-4gj852utc5441aea --n quickstartFunctions --r --project "E:\WeChatProjects\passenger" --report_first --report

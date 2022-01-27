@@ -1,0 +1,56 @@
+{
+    "pages": [
+        "pages/e客通/e",
+        "pages/出行/out",
+        "pages/乘车/boarding",
+        "pages/发现/findings",
+        "pages/我的/myself"
+    ],
+    "subPackages": [],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    },
+    "tabBar": {
+        "color": "#7A7E83",
+        "selectedColor": "#1895b5",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/e客通/e",
+                "iconPath": "static/pictures/icon/home.png",
+                "selectedIconPath": "static/pictures/icon/home-active.png",
+                "text": "e客通"
+            },
+            {
+                "pagePath": "pages/出行/out",
+                "iconPath": "static/pictures/icon/out.png",
+                "selectedIconPath": "static/pictures/icon/out-active.png",
+                "text": "出行"
+            },
+            {
+                "pagePath": "pages/乘车/boarding",
+                "iconPath": "static/pictures/icon/code.png",
+                "selectedIconPath": "static/pictures/icon/code-active.png",
+                "text": "乘车"
+            },
+            {
+                "pagePath": "pages/发现/findings",
+                "iconPath": "static/pictures/icon/findings.png",
+                "selectedIconPath": "static/pictures/icon/findings-active.png",
+                "text": "发现"
+            },
+            {
+                "pagePath": "pages/我的/myself",
+                "iconPath": "static/pictures/icon/myself.png",
+                "selectedIconPath": "static/pictures/icon/myself-active.png",
+                "text": "我的"
+            }
+        ]
+    },
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json"
+}
