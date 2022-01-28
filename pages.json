@@ -25,7 +25,7 @@
 	"tabBar": {
 	    "color": "#7A7E83",
 	    "selectedColor": "#1895b5",
-	    "borderStyle": "black",
+	    "borderStyle": "white",
 	    "backgroundColor": "#ffffff",
 	    "list": [{
 	        "pagePath": "pages/e客通/e",
@@ -37,12 +37,12 @@
 	        "iconPath": "static/pictures/icon/out.png",
 	        "selectedIconPath": "static/pictures/icon/out-active.png",
 	        "text": "出行"
-	    }, {
+	    }, /*{
 	        "pagePath": "pages/乘车/boarding",
 	        "iconPath": "static/pictures/icon/code.png",
 	        "selectedIconPath": "static/pictures/icon/code-active.png",
 	        "text": "乘车"
-	    }, {
+	    },*/ {
 	        "pagePath": "pages/发现/findings",
 	        "iconPath": "static/pictures/icon/findings.png",
 	        "selectedIconPath": "static/pictures/icon/findings-active.png",
