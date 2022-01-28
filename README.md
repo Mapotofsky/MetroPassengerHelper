@@ -10,3 +10,5 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+1.27 - 上传带tabBar的uniapp框架
+1.28 - 删除二维码页面（考虑到支付宝地铁乘车功能）
