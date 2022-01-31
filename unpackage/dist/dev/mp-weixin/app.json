@@ -1,50 +1,45 @@
 {
     "pages": [
-        "pages/e客通/e",
-        "pages/出行/out",
-        "pages/乘车/boarding",
-        "pages/发现/findings",
-        "pages/我的/myself"
+        "pages/e/e",
+        "pages/out/out",
+        "pages/findings/findings",
+        "pages/myself/myself"
     ],
     "subPackages": [],
     "window": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "uni-app",
-        "navigationBarBackgroundColor": "#F8F8F8",
-        "backgroundColor": "#F8F8F8"
+        "navigationBarTitleText": "e客通",
+        "navigationBarBackgroundColor": "#1895b5",
+        "backgroundColor": "#ffffff",
+        "backgroundTextStyle": "dark",
+        "enablePullDownRefresh": true
     },
     "tabBar": {
         "color": "#7A7E83",
         "selectedColor": "#1895b5",
-        "borderStyle": "black",
+        "borderStyle": "white",
         "backgroundColor": "#ffffff",
         "list": [
             {
-                "pagePath": "pages/e客通/e",
+                "pagePath": "pages/e/e",
                 "iconPath": "static/pictures/icon/home.png",
                 "selectedIconPath": "static/pictures/icon/home-active.png",
                 "text": "e客通"
             },
             {
-                "pagePath": "pages/出行/out",
+                "pagePath": "pages/out/out",
                 "iconPath": "static/pictures/icon/out.png",
                 "selectedIconPath": "static/pictures/icon/out-active.png",
                 "text": "出行"
             },
             {
-                "pagePath": "pages/乘车/boarding",
-                "iconPath": "static/pictures/icon/code.png",
-                "selectedIconPath": "static/pictures/icon/code-active.png",
-                "text": "乘车"
-            },
-            {
-                "pagePath": "pages/发现/findings",
+                "pagePath": "pages/findings/findings",
                 "iconPath": "static/pictures/icon/findings.png",
                 "selectedIconPath": "static/pictures/icon/findings-active.png",
                 "text": "发现"
             },
             {
-                "pagePath": "pages/我的/myself",
+                "pagePath": "pages/myself/myself",
                 "iconPath": "static/pictures/icon/myself.png",
                 "selectedIconPath": "static/pictures/icon/myself-active.png",
                 "text": "我的"

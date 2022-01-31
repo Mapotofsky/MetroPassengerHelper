@@ -1,26 +1,52 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/e客通/e"
+			"path": "pages/e/e",
+			//added 👇
+			"style": {
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+			//added 👆
 		},
 		{
-			"path": "pages/出行/out"
+			"path": "pages/out/out",
+			//added 👇
+			"style": {
+				"navigationBarTitleText": "出行",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+			//added 👆
 		}, 
 		{
-			"path": "pages/乘车/boarding"
-		},
-		{
-			"path": "pages/发现/findings"
+			"path": "pages/findings/findings",
+			//added 👇
+			"style": {
+				"navigationBarTitleText": "发现",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+			//added 👆
 		}, 
 		{
-			"path": "pages/我的/myself"
+			"path": "pages/myself/myself",
+			//added 👇
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+			//added 👆
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		//modified 👇
+		"navigationBarTitleText": "e客通",
+		"navigationBarBackgroundColor": "#1895b5",
+		"backgroundColor": "#ffffff",
+		//modified 👆
+		//added 👇
+		"backgroundTextStyle": "dark",
+		"enablePullDownRefresh": true
+		//added 👆
 	},
 	"tabBar": {
 	    "color": "#7A7E83",
@@ -28,27 +54,22 @@
 	    "borderStyle": "white",
 	    "backgroundColor": "#ffffff",
 	    "list": [{
-	        "pagePath": "pages/e客通/e",
+	        "pagePath": "pages/e/e",
 	        "iconPath": "static/pictures/icon/home.png",
 	        "selectedIconPath": "static/pictures/icon/home-active.png",
 	        "text": "e客通"
 	    }, {
-	        "pagePath": "pages/出行/out",
+	        "pagePath": "pages/out/out",
 	        "iconPath": "static/pictures/icon/out.png",
 	        "selectedIconPath": "static/pictures/icon/out-active.png",
 	        "text": "出行"
-	    }, /*{
-	        "pagePath": "pages/乘车/boarding",
-	        "iconPath": "static/pictures/icon/code.png",
-	        "selectedIconPath": "static/pictures/icon/code-active.png",
-	        "text": "乘车"
-	    },*/ {
-	        "pagePath": "pages/发现/findings",
+	    }, {
+	        "pagePath": "pages/findings/findings",
 	        "iconPath": "static/pictures/icon/findings.png",
 	        "selectedIconPath": "static/pictures/icon/findings-active.png",
 	        "text": "发现"
 	    }, {
-	        "pagePath": "pages/我的/myself",
+	        "pagePath": "pages/myself/myself",
 	        "iconPath": "static/pictures/icon/myself.png",
 	        "selectedIconPath": "static/pictures/icon/myself-active.png",
 	        "text": "我的"
