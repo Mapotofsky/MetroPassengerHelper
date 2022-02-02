@@ -241,31 +241,117 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       notices: [],
-      tips: [] };
+      tips: [],
+      news: [] };
 
   },
   methods: {
-    seeBill: function seeBill() {
-      console.log("[seeBill] wait to complete");
+    toAnotherPage: function toAnotherPage(pageName) {
+      console.log("[toAnotherPage] wait to complete, now to " + pageName);
     } },
 
   onLoad: function onLoad() {
     this.notices = [
-    { imgUrl: "../../static/pictures/notices/1.png" },
-    { imgUrl: "../../static/pictures/notices/1.png" },
-    { imgUrl: "../../static/pictures/notices/1.png" },
-    { imgUrl: "../../static/pictures/notices/1.png" },
-    { imgUrl: "../../static/pictures/notices/1.png" }];
+    {
+      imgUrl: "../../static/pictures/notices/1.png",
+      notice: "1" },
+
+    {
+      imgUrl: "../../static/pictures/notices/1.png",
+      notice: "2" },
+
+    {
+      imgUrl: "../../static/pictures/notices/1.png",
+      notice: "3" }];
+
 
     this.tips = [
-    { imgUrl: "../../static/pictures/tips/1.png" },
-    { imgUrl: "../../static/pictures/tips/1.png" },
-    { imgUrl: "../../static/pictures/tips/1.png" }];
+    {
+      imgUrl: "../../static/pictures/tips/1.png",
+      tip: "1" },
+
+    {
+      imgUrl: "../../static/pictures/tips/1.png",
+      tip: "2" },
+
+    {
+      imgUrl: "../../static/pictures/tips/1.png",
+      tip: "3" }];
+
+
+    this.news = [
+    {
+      imgUrl: "../../static/pictures/news/1.png",
+      news: "这是第一条新闻",
+      class: "站务宣传" },
+
+    {
+      imgUrl: "../../static/pictures/news/1.png",
+      news: "这是第二条新闻",
+      class: "站务宣传" },
+
+    {
+      imgUrl: "../../static/pictures/news/1.png",
+      news: "这是第三条新闻",
+      class: "站务宣传" }];
+
 
   } };exports.default = _default;
 
