@@ -3,13 +3,13 @@
         "pages/e/e",
         "pages/out/out",
         "pages/findings/findings",
-        "pages/myself/myself"
+        "pages/myself/myself",
+        "pages/myself/authorize/authorize",
+        "pages/myself/data_analyze/data_analyze"
     ],
     "subPackages": [],
     "window": {
         "navigationBarTextStyle": "black",
-        "navigationBarTitleText": "e客通",
-        "navigationBarBackgroundColor": "#1895b5",
         "backgroundColor": "#ffffff",
         "backgroundTextStyle": "dark",
         "enablePullDownRefresh": true

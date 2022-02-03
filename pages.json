@@ -4,6 +4,7 @@
 			"path": "pages/e/e",
 			//added 👇
 			"style": {
+				"navigationBarTitleText": "e客通",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
 			//added 👆
@@ -30,17 +31,29 @@
 			"path": "pages/myself/myself",
 			//added 👇
 			"style": {
-				"navigationBarTitleText": "我的",
-				"navigationBarBackgroundColor": "#ffffff"
+				"navigationStyle":"custom",
+				"app-plus":{
+					"titleView":false
+				}
 			}
 			//added 👆
+		},
+		{
+			"path": "pages/myself/authorize/authorize",
+			"style": {
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+		},
+		{
+			"path": "pages/myself/data_analyze/data_analyze",
+			"style": {
+				"navigationBarBackgroundColor": "#ffffff"
+			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		//modified 👇
-		"navigationBarTitleText": "e客通",
-		"navigationBarBackgroundColor": "#1895b5",
 		"backgroundColor": "#ffffff",
 		//modified 👆
 		//added 👇
