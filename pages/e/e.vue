@@ -129,7 +129,7 @@
 		</block>
 	</swiper>
 	<!-- 账单 -->
-	<view class="bill" @click="toAnotherPage('bill')"></view>
+	<view class="bill" style="background-image: url(../../static/pictures/tips/bill.png);" @click="toAnotherPage('bill')"></view>
 	<!-- 地铁资讯 -->
 	<view class="news_title">
 		<view class="news_name">
@@ -141,7 +141,7 @@
 	</view>
 	<view class="news_container" @click="toAnotherPage('news ' + index)" v-for="(item, index) in news">
 		<view class="news_pic">
-			<image :src="item.imgUrl" class="news_img"></image>
+			<image :src="item.imgUrl" class="news_img" mode="aspectFill"></image>
 		</view>
 		<view class="news_content">
 			<view class="news_description">
@@ -176,11 +176,11 @@
 					notice: "1"
 				},
 				{
-					imgUrl: "../../static/pictures/notices/1.png",
+					imgUrl: "../../static/pictures/notices/2.png",
 					notice: "2"
 				},
 				{
-					imgUrl: "../../static/pictures/notices/1.png",
+					imgUrl: "../../static/pictures/notices/3.png",
 					notice: "3",
 				}
 			];
@@ -190,29 +190,25 @@
 					tip: "1"
 				},
 				{
-					imgUrl: "../../static/pictures/tips/1.png",
+					imgUrl: "../../static/pictures/tips/2.png",
 					tip: "2"
-				},
-				{
-					imgUrl: "../../static/pictures/tips/1.png",
-					tip: "3"
 				}
 			];
 			this.news = [
 				{
 					imgUrl: "../../static/pictures/news/1.png",
-					news: "这是第一条新闻",
-					class: "站务宣传"
+					news: "杭州地铁文明乘车活动“温暖”升级 “背包向前”全线推广",
+					class: "运营在线"
 				},
 				{
-					imgUrl: "../../static/pictures/news/1.png",
-					news: "这是第二条新闻",
-					class: "站务宣传"
+					imgUrl: "../../static/pictures/news/2.png",
+					news: "杭州地铁卫生间便民卡正式上线",
+					class: "运营在线"
 				},
 				{
-					imgUrl: "../../static/pictures/news/1.png",
-					news: "这是第三条新闻",
-					class: "站务宣传"
+					imgUrl: "../../static/pictures/news/3.png",
+					news: "杭州地铁首次推出盲人乘坐指导手册",
+					class: "运营在线"
 				}
 			];
 		}
@@ -338,7 +334,6 @@
 		margin: 20rpx;
 		border-radius: 50rpx;
 		background-size: 100% 100%;
-		background-image: url(../../static/logo.png);
 		background-repeat: no-repeat;
 		box-shadow:0 15rpx 15rpx -10rpx #808080;
 	}

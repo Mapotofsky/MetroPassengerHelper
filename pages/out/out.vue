@@ -99,7 +99,7 @@
 	<view class="myNet" style="width: 100%; height: 2000rpx;" v-if="!map_or_net">
 		<!-- 还没完成类似地图的绘制 -->
 		<view class="net_container">
-			<image src="https://metroman.cn/mp/metromap/routemap_cq_cn.png" mode="aspectFill" class="netPic"></image>
+			<image src="https://metroman.cn/mp/metromap/routemap_hz_cn.png" mode="aspectFill" class="netPic"></image>
 		</view>
 		<!-- 侧边栏 -->
 		<view class="side">
@@ -183,6 +183,14 @@
 				图例
 			</view>
 			<view class="legend_items">
+				<view>
+					<image src="../../static/pictures/map_img/icon1.png" class="legend_it" mode="aspectFit"></image>
+				</view>
+				<view>
+					<image src="../../static/pictures/map_img/icon2.png" class="legend_it" mode="aspectFit"></image>
+				</view>
+			</view>
+			<!-- <view class="legend_items">
 				<view class="legend_item1">
 					<image src="../../static/pictures/map_img/circle.png" mode="aspectFit" class="legend_icon"></image>
 					<view class="legend_text">单线车站</view>
@@ -227,7 +235,7 @@
 					<image src="../../static/pictures/map_img/rail_r.png" mode="aspectFill" class="legend_icon"></image>
 					<view class="legend_text">停运区段</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 		<!-- 信息框 -->
 		<view class="info" v-show="!sideChoosed[0]">
@@ -359,11 +367,15 @@
 			wx.getLocation({
 				type: 'gcj02',
 				success: function(res) {
-					that.latitude = res.latitude - 0.006;  // 定位在视觉中心偏上
-					that.longitude = res.longitude;
+					var result = res;
+					// 想要实际地理位置就把下面两行注释掉
+					result.latitude = 30.2279;
+					result.longitude = 120.041175;
+					that.latitude = result.latitude - 0.006;  // 定位在视觉中心偏上
+					that.longitude = result.longitude;
 					// console.log(that.latitude, that.longitude);
-					that.marker[0].latitude = res.latitude;
-					that.marker[0].longitude = res.longitude;
+					that.marker[0].latitude = result.latitude;
+					that.marker[0].longitude = result.longitude;
 					that.hasMarkers = true;
 				}
 			})
@@ -574,8 +586,8 @@
 		font-size: 30rpx;
 	}
 	.net_container {
-		width: 200%;
-		height: 200%;
+		width: 180%;
+		height: 180%;
 	}
 	.netPic {
 		width: 100%;
@@ -628,12 +640,14 @@
 	}
 	.legend {
 		position: fixed;
-		top: 20%;
+		top: 30%;
+		/* top: 20%; */
 		right: 10%;
 		left: 10%;
 		width: 80%;
 		max-width: 80%;
-		height: 400rpx;
+		/* height: 400rpx; */
+		height: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -648,19 +662,24 @@
 		position: relative;
 		left: 20rpx;
 		margin: 20rpx;
-		margin-bottom: 50rpx;
+		/* margin-bottom: 50rpx; */
 		width: 100%;
 		height: 35rpx;
 		font-size: 30rpx;
 	}
 	.legend_items {
 		width: 100%;
-		height: 30%;
+		height: auto;
+		/* height: 30%; */
 		display: flex;
 		justify-content: space-around;
 		align-items: baseline;
 	}
-	.legend_item1 {
+	.legend_it {
+		width: 300rpx;
+		height: 200rpx;
+	}
+	/* .legend_item1 {
 		height: 100%;
 		width: 30%;
 		display: flex;
@@ -691,5 +710,5 @@
 	.legend_text {
 		font-size: 25rpx;
 		text-align: center;
-	}
+	} */
 </style>

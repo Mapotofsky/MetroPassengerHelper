@@ -378,6 +378,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -491,11 +499,15 @@ var _default =
     wx.getLocation({
       type: 'gcj02',
       success: function success(res) {
-        that.latitude = res.latitude - 0.006; // 定位在视觉中心偏上
-        that.longitude = res.longitude;
+        var result = res;
+        // 想要实际地理位置就把下面两行注释掉
+        result.latitude = 30.2279;
+        result.longitude = 120.041175;
+        that.latitude = result.latitude - 0.006; // 定位在视觉中心偏上
+        that.longitude = result.longitude;
         // console.log(that.latitude, that.longitude);
-        that.marker[0].latitude = res.latitude;
-        that.marker[0].longitude = res.longitude;
+        that.marker[0].latitude = result.latitude;
+        that.marker[0].longitude = result.longitude;
         that.hasMarkers = true;
       } });
 

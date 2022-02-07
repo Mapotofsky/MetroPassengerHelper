@@ -314,11 +314,11 @@ var _default =
       notice: "1" },
 
     {
-      imgUrl: "../../static/pictures/notices/1.png",
+      imgUrl: "../../static/pictures/notices/2.png",
       notice: "2" },
 
     {
-      imgUrl: "../../static/pictures/notices/1.png",
+      imgUrl: "../../static/pictures/notices/3.png",
       notice: "3" }];
 
 
@@ -328,29 +328,25 @@ var _default =
       tip: "1" },
 
     {
-      imgUrl: "../../static/pictures/tips/1.png",
-      tip: "2" },
-
-    {
-      imgUrl: "../../static/pictures/tips/1.png",
-      tip: "3" }];
+      imgUrl: "../../static/pictures/tips/2.png",
+      tip: "2" }];
 
 
     this.news = [
     {
       imgUrl: "../../static/pictures/news/1.png",
-      news: "这是第一条新闻",
-      class: "站务宣传" },
+      news: "杭州地铁文明乘车活动“温暖”升级 “背包向前”全线推广",
+      class: "运营在线" },
 
     {
-      imgUrl: "../../static/pictures/news/1.png",
-      news: "这是第二条新闻",
-      class: "站务宣传" },
+      imgUrl: "../../static/pictures/news/2.png",
+      news: "杭州地铁卫生间便民卡正式上线",
+      class: "运营在线" },
 
     {
-      imgUrl: "../../static/pictures/news/1.png",
-      news: "这是第三条新闻",
-      class: "站务宣传" }];
+      imgUrl: "../../static/pictures/news/3.png",
+      news: "杭州地铁首次推出盲人乘坐指导手册",
+      class: "运营在线" }];
 
 
   } };exports.default = _default;
