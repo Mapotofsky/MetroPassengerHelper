@@ -141,7 +141,7 @@
 	</view>
 	<view class="news_container" @click="toAnotherPage('news ' + index)" v-for="(item, index) in news">
 		<view class="news_pic">
-			<image :src="item.imgUrl" mode="" class="news_img"></image>
+			<image :src="item.imgUrl" class="news_img"></image>
 		</view>
 		<view class="news_content">
 			<view class="news_description">

@@ -14,7 +14,8 @@
 			//added 👇
 			"style": {
 				"navigationBarTitleText": "出行",
-				"navigationBarBackgroundColor": "#ffffff"
+				"navigationBarBackgroundColor": "#ffffff",
+				"enablePullDownRefresh": false
 			}
 			//added 👆
 		}, 

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "出行",
   "navigationBarBackgroundColor": "#ffffff",
+  "enablePullDownRefresh": false,
   "usingComponents": {}
 }
