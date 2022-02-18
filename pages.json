@@ -51,7 +51,30 @@
 				"navigationBarBackgroundColor": "#ffffff"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/out/stations/stations",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "车站",
+				"navigationBarBackgroundColor": "#ffffff",
+				"usingComponents":{
+					"van-search": "/wxcomponents/vant/dist/search/index",
+					"van-tree-select": "/wxcomponents/vant/dist/tree-select/index",
+					"van-toast": "/wxcomponents/vant/dist/toast/index"
+				}
+            }
+            
+        }
+        ,{
+            "path" : "pages/out/info/info",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "车站信息",
+				"navigationBarBackgroundColor": "#ffffff"
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		//modified 👇

@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
+
+/***/ 1:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -947,7 +947,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2090,7 +2090,137 @@ uni$1;exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 2 */
+
+/***/ 11:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 2:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -2120,7 +2250,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -7647,7 +7778,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7668,14 +7799,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7761,7 +7892,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"flow","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8171,7 +8302,8 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /*!*************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
   \*************************************************************/
@@ -8634,7 +8766,8 @@ function resolveLocaleChain(locale) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /*!************************************************!*\
   !*** E:/HBuilderProjects/passenger/pages.json ***!
   \************************************************/
@@ -8644,138 +8777,348 @@ function resolveLocaleChain(locale) {
 
 
 /***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+/***/ 64:
+/*!*******************************************************!*\
+  !*** E:/HBuilderProjects/passenger/static/data/hz.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  lineList: [
+  { name: '1号线', color: '#FF3333', stations: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32] },
+  { name: '2号线', color: '#FF9333', stations: [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 10, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64] },
+  { name: '4号线', color: '#66CB33', stations: [16, 15, 65, 66, 67, 45, 68, 69, 70, 5, 71, 72, 73, 74, 75, 76, 77, 78] },
+  { name: '5号线', color: '#22B5DD', stations: [79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 57, 89, 90, 91, 92, 93, 94, 95, 96, 13, 48, 97, 7, 98, 99, 72, 100, 101, 102, 1, 103, 104, 38, 105, 106, 107, 108, 109] },
+  { name: '6号线', color: '#0072CE', stations: [110, 111, 112, 113, 114, 44, 115, 116, 117, 4, 118, 100, 119, 120, 121, 76, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139] },
+  { name: '7号线', color: '#983CAF', stations: [69, 116, 140, 141, 40, 142, 143, 144, 145, 146, 147, 148, 32, 149, 150, 151, 152, 153, 154, 155] },
+  { name: '8号线', color: '#CF0072', stations: [25, 156, 157, 158, 159, 153, 160, 161, 162] },
+  { name: '9号线', color: '#CE4300', stations: [20, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172] },
+  { name: '16号线', color: '#FFBC73', stations: [80, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183] },
+  { name: '杭海城际', color: '#008EEF', stations: [166, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194] },
+  { name: '绍兴1号线', color: '#CE2838', stations: [109, 195, 196, 197, 198, 199, 200, 201, 202, 203] }],
 
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
+  stationList: [
+  { id: 0, name: '湘湖', pinyin: 'xianghu', py: 'xh', lat: '30.167577', lng: '120.234376' },
+  { id: 1, name: '滨康路', pinyin: 'binkanglu', py: 'bkl', lat: '30.182966', lng: '120.232589' },
+  { id: 2, name: '西兴', pinyin: 'xixing', py: 'xx', lat: '30.187305', lng: '120.220429' },
+  { id: 3, name: '滨和路', pinyin: 'binhelu', py: 'bhl', lat: '30.199499', lng: '120.217527' },
+  { id: 4, name: '江陵路', pinyin: 'jianglinglu', py: 'jll', lat: '30.208994', lng: '120.216593' },
+  { id: 5, name: '近江', pinyin: 'jinjiang', py: 'jj', lat: '30.230794', lng: '120.19785' },
+  { id: 6, name: '婺江路', pinyin: 'wujianglu', py: 'wjl', lat: '30.236926', lng: '120.191' },
+  { id: 7, name: '城站', pinyin: 'chengzhan', py: 'cz', lat: '30.244573', lng: '120.180764' },
+  { id: 8, name: '定安路', pinyin: 'dinganlu', py: 'dal', lat: '30.245944', lng: '120.167746' },
+  { id: 9, name: '龙翔桥', pinyin: 'longxiangqiao', py: 'lxq', lat: '30.254638', lng: '120.164049' },
+  { id: 10, name: '凤起路', pinyin: 'fengqilu', py: 'fql', lat: '30.2639', lng: '120.163625' },
+  { id: 11, name: '武林广场', pinyin: 'wulinguangchang', py: 'wlgc', lat: '30.270317', lng: '120.163443' },
+  { id: 12, name: '西湖文化广场', pinyin: 'xihuwenhuaguangchang', py: 'xhwhgc', lat: '30.280713', lng: '120.165556' },
+  { id: 13, name: '打铁关', pinyin: 'datieguan', py: 'dtg', lat: '30.285429', lng: '120.17673' },
+  { id: 14, name: '闸弄口', pinyin: 'zhanongkou', py: 'znk', lat: '30.284516', lng: '120.192491' },
+  { id: 15, name: '火车东站', pinyin: 'huochedongzhan', py: 'hcdz', lat: '30.291117', lng: '120.212887' },
+  { id: 16, name: '彭埠', pinyin: 'pengbu', py: 'pb', lat: '30.294072', lng: '120.223637' },
+  { id: 17, name: '七堡', pinyin: 'qibao', py: 'qb', lat: '30.300001', lng: '120.241061' },
+  { id: 18, name: '九和路', pinyin: 'jiuhelu', py: 'jhl', lat: '30.305809', lng: '120.252776' },
+  { id: 19, name: '九堡', pinyin: 'jiubao', py: 'jb', lat: '30.30792', lng: '120.266453' },
+  { id: 20, name: '客运中心', pinyin: 'keyunzhongxin', py: 'kyzx', lat: '30.311194', lng: '120.27869' },
+  { id: 21, name: '下沙西', pinyin: 'xiashaxi', py: 'xsx', lat: '30.309926', lng: '120.312523' },
+  { id: 22, name: '金沙湖', pinyin: 'jinshahu', py: 'jsh', lat: '30.309259', lng: '120.325709' },
+  { id: 23, name: '高沙路', pinyin: 'gaoshalu', py: 'gsl', lat: '30.309444', lng: '120.335397' },
+  { id: 24, name: '文泽路', pinyin: 'wenzelu', py: 'wzl', lat: '30.31', lng: '120.348416' },
+  { id: 25, name: '文海南路', pinyin: 'wenhainanlu', py: 'whnl', lat: '30.311213', lng: '120.376145' },
+  { id: 26, name: '云水', pinyin: 'yunshui', py: 'ys', lat: '30.302891', lng: '120.381772' },
+  { id: 27, name: '下沙江滨', pinyin: 'xiashajiangbin', py: 'xsjb', lat: '30.28774', lng: '120.381713' },
+  { id: 28, name: '杭州大会展中心', pinyin: 'hangzhoudahuizhanzhongxin', py: 'hzdhzzx', lat: '30.271213', lng: '120.412045' },
+  { id: 29, name: '港城大道', pinyin: 'gangchengdadao', py: 'gcdd', lat: '30.270713', lng: '120.424276' },
+  { id: 30, name: '南阳', pinyin: 'nanyang', py: 'ny', lat: '30.270083', lng: '120.436185' },
+  { id: 31, name: '向阳路', pinyin: 'xiangyanglu', py: 'xyl', lat: '30.258685', lng: '120.442064' },
+  { id: 32, name: '萧山国际机场', pinyin: 'xiaoshanguojijichang', py: 'xsgjjc', lat: '30.235514', lng: '120.435155' },
+  { id: 33, name: '朝阳', pinyin: 'chaoyang', py: 'cy', lat: '30.122234', lng: '120.268221' },
+  { id: 34, name: '曹家桥', pinyin: 'caojiaqiao', py: 'cjq', lat: '30.13452', lng: '120.267846' },
+  { id: 35, name: '潘水', pinyin: 'panshui', py: 'ps', lat: '30.148205', lng: '120.26762' },
+  { id: 36, name: '人民路', pinyin: 'renminlu', py: 'rml', lat: '30.159161', lng: '120.267502' },
+  { id: 37, name: '杭发厂', pinyin: 'hangfachang', py: 'hfc', lat: '30.170617', lng: '120.267202' },
+  { id: 38, name: '人民广场', pinyin: 'renminguangchang', py: 'rmgc', lat: '30.181117', lng: '120.266773' },
+  { id: 39, name: '建设一路', pinyin: 'jiansheyilu', py: 'jsyl', lat: '30.194044', lng: '120.266531' },
+  { id: 40, name: '建设三路', pinyin: 'jiansesanlu', py: 'jssl', lat: '30.204467', lng: '120.268237' },
+  { id: 41, name: '振宁路', pinyin: 'zhenninglu', py: 'znl', lat: '30.217697', lng: '120.269214' },
+  { id: 42, name: '飞虹路', pinyin: 'feihonglu', py: 'fhl', lat: '30.230945', lng: '120.263313' },
+  { id: 43, name: '盈丰路', pinyin: 'yingfenglu', py: 'yfl', lat: '30.237007', lng: '120.252509' },
+  { id: 44, name: '钱江世纪城', pinyin: 'qianjiangshijicheng', py: 'qjsjc', lat: '30.240807', lng: '120.243625' },
+  { id: 45, name: '钱江路', pinyin: 'qianjianglu', py: 'qjl', lat: '30.255516', lng: '120.214207' },
+  { id: 46, name: '庆春广场', pinyin: 'qingchunguangchang', py: 'qcgc', lat: '30.25761', lng: '120.204744' },
+  { id: 47, name: '庆菱路', pinyin: 'qinglinglu', py: 'qll', lat: '30.257605', lng: '120.193082' },
+  { id: 48, name: '建国北路', pinyin: 'jianguobeilu', py: 'jgbl', lat: '30.26456', lng: '120.180733' },
+  { id: 49, name: '中河北路', pinyin: 'zhonghebeilu', py: 'zhbl', lat: '30.264602', lng: '120.172418' },
+  { id: 50, name: '武林门', pinyin: 'wulinmen', py: 'wlm', lat: '30.270569', lng: '120.155107' },
+  { id: 51, name: '沈塘桥', pinyin: 'shentangqiao', py: 'stq', lat: '30.278307', lng: '120.151104' },
+  { id: 52, name: '下宁桥', pinyin: 'xianingqiao', py: 'xnq', lat: '30.283329', lng: '120.140118' },
+  { id: 53, name: '学院路', pinyin: 'xueyuanlu', py: 'xyl', lat: '30.282745', lng: '120.129507' },
+  { id: 54, name: '古翠路', pinyin: 'gucuilu', py: 'gcl', lat: '30.282198', lng: '120.117898' },
+  { id: 55, name: '丰潭路', pinyin: 'fengtanlu', py: 'ftl', lat: '30.281902', lng: '120.109616' },
+  { id: 56, name: '文新', pinyin: 'wenxin', py: 'wx', lat: '30.289267', lng: '120.098168' },
+  { id: 57, name: '三坝', pinyin: 'sanba', py: 'sb', lat: '30.300041', lng: '120.0979' },
+  { id: 58, name: '虾龙圩', pinyin: 'xialongwei', py: 'xlw', lat: '30.309591', lng: '120.096366' },
+  { id: 59, name: '三墩', pinyin: 'sandun', py: 'sd', lat: '30.320029', lng: '120.093007' },
+  { id: 60, name: '墩祥街', pinyin: 'dunxiangjie', py: 'dxj', lat: '30.331665', lng: '120.087595' },
+  { id: 61, name: '金家渡', pinyin: 'jinjiadu', py: 'jjd', lat: '30.339119', lng: '120.083925' },
+  { id: 62, name: '白洋', pinyin: 'baiyang', py: 'by', lat: '30.351161', lng: '120.07288' },
+  { id: 63, name: '杜甫村', pinyin: 'dufucun', py: 'dfc', lat: '30.359049', lng: '120.056529' },
+  { id: 64, name: '良渚', pinyin: 'liangzhu', py: 'lz', lat: '30.358993', lng: '120.041638' },
+  { id: 65, name: '新风', pinyin: 'xinfeng', py: 'xf', lat: '30.287244', lng: '120.208076' },
+  { id: 66, name: '新塘', pinyin: 'xintang', py: 'xt', lat: '30.276185', lng: '120.207356' },
+  { id: 67, name: '景芳', pinyin: 'jinfang', py: 'jf', lat: '30.26489', lng: '120.207667' },
+  { id: 68, name: '江锦路', pinyin: 'jiangjinlu', py: 'jjl', lat: '30.249724', lng: '120.215564' },
+  { id: 69, name: '市民中心', pinyin: 'shiminzhongxin', py: 'smzx', lat: '30.243546', lng: '120.210092' },
+  { id: 70, name: '城星路', pinyin: 'chengxinglu', py: 'cxl', lat: '30.239653', lng: '120.206927' },
+  { id: 71, name: '甬江路', pinyin: 'yongjianglu', py: 'yjl', lat: '30.223288', lng: '120.189423' },
+  { id: 72, name: '南星桥', pinyin: 'nanxingqiao', py: 'nxq', lat: '30.217294', lng: '120.177385' },
+  { id: 73, name: '复兴路', pinyin: 'fuxinglu', py: 'fxl', lat: '30.210294', lng: '120.163406' },
+  { id: 74, name: '水澄桥', pinyin: 'shuichengqiao', py: 'scq', lat: '30.204082', lng: '120.151937' },
+  { id: 75, name: '联庄', pinyin: 'lianzhuang', py: 'lz', lat: '30.186658', lng: '120.152022' },
+  { id: 76, name: '中医药大学', pinyin: 'zhongyiyaodaxue', py: 'zyydx', lat: '30.175816', lng: '120.146422' },
+  { id: 77, name: '杨家墩', pinyin: 'yangjiadun', py: 'yjd', lat: '30.167821', lng: '120.148846' },
+  { id: 78, name: '浦沿', pinyin: 'puyan', py: 'py', lat: '30.158656', lng: '120.153937' },
+  { id: 79, name: '金星', pinyin: 'jinxing', py: 'jx', lat: '30.265053', lng: '119.96652' },
+  { id: 80, name: '绿汀路', pinyin: 'lvtinglu', py: 'ltl', lat: '30.260141', lng: '119.992097' },
+  { id: 81, name: '葛巷', pinyin: 'gexiang', py: 'gx', lat: '30.270358', lng: '119.998803' },
+  { id: 82, name: '创景路', pinyin: 'chuangjinglu', py: 'cjl', lat: '30.278095', lng: '119.99802' },
+  { id: 83, name: '良睦路', pinyin: 'liangmulu', py: 'lml', lat: '30.285618', lng: '120.007099' },
+  { id: 84, name: '杭师大仓前', pinyin: 'hangshidacangqian', py: 'hsdcq', lat: '30.288575', lng: '120.017184' },
+  { id: 85, name: '永福', pinyin: 'yongfu', py: 'yf', lat: '30.291605', lng: '120.027044' },
+  { id: 86, name: '五常', pinyin: 'wuchang', py: 'wc', lat: '30.296292', lng: '120.045122' },
+  { id: 87, name: '蒋村', pinyin: 'jiangcun', py: 'jc', lat: '30.294828', lng: '120.06733' },
+  { id: 88, name: '浙大紫金港', pinyin: 'zhedazijingang', py: 'zdzjg', lat: '30.294129', lng: '120.077185' },
+  { id: 89, name: '萍水街', pinyin: 'pingshuijie', py: 'psj', lat: '30.302786', lng: '120.112479' },
+  { id: 90, name: '和睦', pinyin: 'hemu', py: 'hm', lat: '30.309712', lng: '120.120568' },
+  { id: 91, name: '大运河', pinyin: 'dayunhe', py: 'dyh', lat: '30.319282', lng: '120.131671' },
+  { id: 92, name: '拱宸桥东', pinyin: 'gongchenqiaodong', py: 'gcqd', lat: '30.317077', lng: '120.147668' },
+  { id: 93, name: '善贤', pinyin: 'shanxian', py: 'sx', lat: '30.316546', lng: '120.159751' },
+  { id: 94, name: '西文街', pinyin: 'xiwenjie', py: 'xwj', lat: '30.316049', lng: '120.16992' },
+  { id: 95, name: '香积寺路', pinyin: 'xiangjisilu', py: 'xjsl', lat: '30.308442', lng: '120.175802' },
+  { id: 96, name: '杭氧', pinyin: 'hangyang', py: 'hy', lat: '30.296426', lng: '120.178916' },
+  { id: 97, name: '万安桥', pinyin: 'wananqiao', py: 'waq', lat: '30.253999', lng: '120.180579' },
+  { id: 98, name: '江城路', pinyin: 'jiangchenglu', py: 'jcl', lat: '30.23854', lng: '120.178197' },
+  { id: 99, name: '候潮门', pinyin: 'houchaomen', py: 'hcm', lat: '30.22673', lng: '120.173026' },
+  { id: 100, name: '长河', pinyin: 'changhe', py: 'ch', lat: '30.197173', lng: '120.193936' },
+  { id: 101, name: '聚才路', pinyin: 'jucailu', py: 'jcl', lat: '30.182422', lng: '120.198797' },
+  { id: 102, name: '江晖路', pinyin: 'jianghuilu', py: 'jhl', lat: '30.181587', lng: '120.212412' },
+  { id: 103, name: '博奥路', pinyin: 'boaolu', py: 'bal', lat: '30.182384', lng: '120.244061' },
+  { id: 104, name: '金鸡路', pinyin: 'jinjilu', py: 'jjl', lat: '30.181707', lng: '120.253331' },
+  { id: 105, name: '育才北路', pinyin: 'yucaibeilu', py: 'ycbl', lat: '30.18071', lng: '120.277825' },
+  { id: 106, name: '通惠中路', pinyin: 'tonghuizhonglu', py: 'thzl', lat: '30.180487', lng: '120.285002' },
+  { id: 107, name: '火车南站', pinyin: 'huochenanzhan', py: 'hcnz', lat: '30.172687', lng: '120.297351' },
+  { id: 108, name: '双桥', pinyin: 'shuangqiao', py: 'sq', lat: '30.173151', lng: '120.308874' },
+  { id: 109, name: '姑娘桥', pinyin: 'guniangqiao', py: 'gnq', lat: '30.175917', lng: '120.330501' },
+  { id: 110, name: '枸桔弄', pinyin: 'goujulong', py: 'gjl', lat: '30.301363', lng: '120.206322' },
+  { id: 111, name: '火车东站(东广场)', pinyin: 'huochedongzhandongguangchang', py: 'hcdzdgc', lat: '30.294342', lng: '120.215613' },
+  { id: 112, name: '元宝塘', pinyin: 'yuanbaotang', py: 'ybt', lat: '30.286087', lng: '120.219958' },
+  { id: 113, name: '昙花庵', pinyin: 'tanhuaan', py: 'tha', lat: '30.274793', lng: '120.222834' },
+  { id: 114, name: '三堡', pinyin: 'sanbao', py: 'sb', lat: '30.26688', lng: '120.22764' },
+  { id: 115, name: '博览中心', pinyin: 'bolanzhongxin', py: 'blzx', lat: '30.232825', lng: '120.236803' },
+  { id: 116, name: '奥体中心', pinyin: 'aotizhongxin', py: 'atzx', lat: '30.224111', lng: '120.233058' },
+  { id: 117, name: '星民', pinyin: 'xingmin', py: 'xm', lat: '30.213264', lng: '120.224067' },
+  { id: 118, name: '江汉路', pinyin: 'jianghanlu', py: 'jhl', lat: '30.202741', lng: '120.20482' },
+  { id: 119, name: '建业路', pinyin: 'jianyelu', py: 'jyl', lat: '30.19114', lng: '120.180401' },
+  { id: 120, name: '诚业路', pinyin: 'chengyelu', py: 'cyl', lat: '30.186726', lng: '120.169994' },
+  { id: 121, name: '伟业路', pinyin: 'weiyelu', py: 'wyl', lat: '30.182423', lng: '120.159168' },
+  { id: 122, name: '西浦路', pinyin: 'xipulu', py: 'xpl', lat: '30.168881', lng: '120.137904' },
+  { id: 123, name: '之浦路', pinyin: 'zhipulu', py: 'zpl', lat: '30.158009', lng: '120.107584' },
+  { id: 124, name: '枫桦西路', pinyin: 'fenghuaxilu', py: 'fhxl', lat: '30.154874', lng: '120.097628' },
+  { id: 125, name: '美院象山', pinyin: 'meiyuanxiangshan', py: 'myxs', lat: '30.1512', lng: '120.08117' },
+  { id: 126, name: '霞鸣街', pinyin: 'xiamingjie', py: 'xmj', lat: '30.142572', lng: '120.073016' },
+  { id: 127, name: '科海路', pinyin: 'kehailu', py: 'khl', lat: '30.131344', lng: '120.087607' },
+  { id: 128, name: '双浦', pinyin: 'shuangpu', py: 'sp', lat: '30.11581', lng: '120.083723' },
+  { id: 129, name: '音乐学院', pinyin: 'yinyuexueyuan', py: 'yyxy', lat: '30.147798', lng: '120.056692' },
+  { id: 130, name: '中村', pinyin: 'zhongcun', py: 'zc', lat: '30.147955', lng: '120.043614' },
+  { id: 131, name: '野生动物园东', pinyin: 'yeshengdongwuyuandong', py: 'ysdwy', lat: '30.146693', lng: '120.001106' },
+  { id: 132, name: '银湖', pinyin: 'yinhu', py: 'yh', lat: '30.137123', lng: '119.985093' },
+  { id: 133, name: '虎啸杏', pinyin: 'huxiaoxing', py: 'hxx', lat: '30.130716', lng: '119.970518' },
+  { id: 134, name: '受降', pinyin: 'shouxiang', py: 'sx', lat: '30.122216', lng: '119.96054' },
+  { id: 135, name: '富阳客运中心', pinyin: 'fuyangkeyunzhongxin', py: 'fykyzx', lat: '30.108908', lng: '119.929309' },
+  { id: 136, name: '高桥', pinyin: 'gaoqiao', py: 'gq', lat: '30.094994', lng: '119.931401' },
+  { id: 137, name: '阳陂湖', pinyin: 'yangbeihu', py: 'ybh', lat: '30.082397', lng: '119.932077' },
+  { id: 138, name: '公望街', pinyin: 'gongwangjie', py: 'gwj', lat: '30.065276', lng: '119.933364' },
+  { id: 139, name: '桂花西路', pinyin: 'guihuaxilu', py: 'ghxl', lat: '30.047995', lng: '119.934244' },
+  { id: 140, name: '兴议', pinyin: 'xingyi', py: 'xy', lat: '30.212055', lng: '120.238449' },
+  { id: 141, name: '明星路', pinyin: 'mingxinglu', py: 'mxl', lat: '30.204753', lng: '120.249358' },
+  { id: 142, name: '新兴路', pinyin: 'xinxinglu', py: 'xxl', lat: '30.205059', lng: '120.293432' },
+  { id: 143, name: '新汉路', pinyin: 'xinhanlu', py: 'xhl', lat: '30.202987', lng: '120.30686' },
+  { id: 144, name: '新街', pinyin: 'xinjie', py: 'xj', lat: '30.199445', lng: '120.330702' },
+  { id: 145, name: '合欢路', pinyin: 'hehuanlu', py: 'hhl', lat: '30.198109', lng: '120.343622' },
+  { id: 146, name: '盈中', pinyin: 'yingzhong', py: 'yz', lat: '30.197734', lng: '120.363004' },
+  { id: 147, name: '坎山', pinyin: 'kanshan', py: 'ks', lat: '30.197776', lng: '120.394509' },
+  { id: 148, name: '新港', pinyin: 'xingang', py: 'xg', lat: '30.219324', lng: '120.408306' },
+  { id: 149, name: '永盛路', pinyin: 'yongshenglu', py: 'ysl', lat: '30.236575', lng: '120.47298' },
+  { id: 150, name: '新镇路', pinyin: 'xinzhenlu', py: 'xzl', lat: '30.258541', lng: '120.484224' },
+  { id: 151, name: '义蓬', pinyin: 'yipeng', py: 'yp', lat: '30.27409', lng: '120.487174' },
+  { id: 152, name: '塘新线', pinyin: 'tangxinxian', py: 'txx', lat: '30.284415', lng: '120.490232' },
+  { id: 153, name: '青六中路', pinyin: 'qingliuzhonglu', py: 'qlzl', lat: '30.298863', lng: '120.492399' },
+  { id: 154, name: '启成路', pinyin: 'qichenglu', py: 'qcl', lat: '30.312201', lng: '120.494534' },
+  { id: 155, name: '江东二路', pinyin: 'jiangdongerlu', py: 'jdel', lat: '30.32388', lng: '120.494754' },
+  { id: 156, name: '工商大学云滨', pinyin: 'gongshangdaxueyunbin', py: 'gsdxyb', lat: '30.311099', lng: '120.392997' },
+  { id: 157, name: '桥头堡', pinyin: 'qiaotoubao', py: 'qtb', lat: '30.305467', lng: '120.427587' },
+  { id: 158, name: '河庄路', pinyin: 'hezhuanglu', py: 'hzl', lat: '30.298724', lng: '120.456383' },
+  { id: 159, name: '青西三路', pinyin: 'qingxisanlu', py: 'qxsl', lat: '30.299094', lng: '120.479558' },
+  { id: 160, name: '仓北村', pinyin: 'cangbeicun', py: 'cbc', lat: '30.294518', lng: '120.506476' },
+  { id: 161, name: '冯娄村', pinyin: 'fengloucun', py: 'flc', lat: '30.294388', lng: '120.51183' },
+  { id: 162, name: '新湾路', pinyin: 'xinwanlu', py: 'xwl', lat: '30.295597', lng: '120.542713' },
+  { id: 163, name: '乔司南', pinyin: 'qiaosinan', py: 'qsn', lat: '30.327331', lng: '120.290689' },
+  { id: 164, name: '乔司', pinyin: 'qiaosi', py: 'qs', lat: '30.34686', lng: '120.285254' },
+  { id: 165, name: '翁梅', pinyin: 'wengmei', py: 'wm', lat: '30.36483', lng: '120.295002' },
+  { id: 166, name: '余杭高铁站', pinyin: 'yuhanggaotiezhan', py: 'yhgtz', lat: '30.382075', lng: '120.297845' },
+  { id: 167, name: '南苑', pinyin: 'nanyuan', py: 'ny', lat: '30.394985', lng: '120.302168' },
+  { id: 168, name: '临平', pinyin: 'linping', py: 'lp', lat: '30.406784', lng: '120.304057' },
+  { id: 169, name: '邱山大街', pinyin: 'qiushandajie', py: 'qsdj', lat: '30.420491', lng: '120.29674' },
+  { id: 170, name: '荷禹路', pinyin: 'heyulu', py: 'hyl', lat: '30.434377', lng: '120.284487' },
+  { id: 171, name: '五洲路', pinyin: 'wuzhoulu', py: 'wzl', lat: '30.444913', lng: '120.278844' },
+  { id: 172, name: '龙安', pinyin: 'longan', py: 'la', lat: '30.455124', lng: '120.273565' },
+  { id: 173, name: '凤新路', pinyin: 'fengxinlu', py: 'fxl', lat: '30.260139', lng: '119.968837' },
+  { id: 174, name: '禹航路', pinyin: 'yuhanglu', py: 'yhl', lat: '30.248767', lng: '119.955533' },
+  { id: 175, name: '中泰', pinyin: 'zhongtai', py: 'zt', lat: '30.24304', lng: '119.92943' },
+  { id: 176, name: '南湖', pinyin: 'nanhu', py: 'nh', lat: '30.246784', lng: '119.899582' },
+  { id: 177, name: '南峰', pinyin: 'nanfeng', py: 'nf', lat: '30.249815', lng: '119.87791' },
+  { id: 178, name: '青山湖科技城', pinyin: 'qingshanhukejicheng', py: 'qshkjc', lat: '30.257034', lng: '119.825113' },
+  { id: 179, name: '八百里', pinyin: 'babaili', py: 'bbl', lat: '30.261019', lng: '119.776581' },
+  { id: 180, name: '青山湖', pinyin: 'qingshanhu', py: 'qsh', lat: '30.25582', lng: '119.755644' },
+  { id: 181, name: '农林大学', pinyin: 'nonglindaxue', py: 'nldx', lat: '30.24455', lng: '119.737764' },
+  { id: 182, name: '临安广场', pinyin: 'linanguangchang', py: 'lagc', lat: '30.22756', lng: '119.706463' },
+  { id: 183, name: '九州街', pinyin: 'jiuzhoujie', py: 'jzj', lat: '30.202231', lng: '119.696496' },
+  { id: 184, name: '许村', pinyin: 'xucun', py: 'xc', lat: '30.410437', lng: '120.355357' },
+  { id: 185, name: '海宁高铁西站', pinyin: 'haininggaotiexizhan', py: 'hngtxz', lat: '30.439634', lng: '120.390826' },
+  { id: 186, name: '长安（东方学院）', pinyin: 'changandongfangxueyuan', py: 'cadfxy', lat: '30.43512', lng: '120.438269' },
+  { id: 187, name: '长安东', pinyin: 'changandong', py: 'cad', lat: '30.443482', lng: '120.459856' },
+  { id: 188, name: '周王庙', pinyin: 'zhouwangmiao', py: 'zwm', lat: '30.449549', lng: '120.50526' },
+  { id: 189, name: '盐官', pinyin: 'yanguan', py: 'yg', lat: '30.463015', lng: '120.540279' },
+  { id: 190, name: '桐九公路', pinyin: 'tongjiugonglu', py: 'tjgl', lat: '30.483691', lng: '120.58843' },
+  { id: 191, name: '斜桥', pinyin: 'xieqiao', py: 'xq', lat: '30.487537', lng: '120.615553' },
+  { id: 192, name: '皮革城', pinyin: 'pigecheng', py: 'pgc', lat: '30.506137', lng: '120.664165' },
+  { id: 193, name: '海昌路', pinyin: 'haichanglu', py: 'hcl', lat: '30.511221', lng: '120.691749' },
+  { id: 194, name: '浙大国际校区', pinyin: 'zhedaguojixiaoqu', py: 'zdgjxq', lat: '30.512663', lng: '120.716339' },
+  { id: 195, name: '衙前', pinyin: 'yaqian', py: 'yq', lat: '30.163156', lng: '120.360316' },
+  { id: 196, name: '杨汛桥', pinyin: 'yangxunqiao', py: 'yxq', lat: '30.144268', lng: '120.36538' },
+  { id: 197, name: '前梅', pinyin: 'qianmei', py: 'qm', lat: '30.130323', lng: '120.392138' },
+  { id: 198, name: '钱清', pinyin: 'qianqing', py: 'qq', lat: '30.123391', lng: '120.405978' },
+  { id: 199, name: '西沙路', pinyin: 'xishalu', py: 'xsl', lat: '30.118212', lng: '120.424282' },
+  { id: 200, name: '临杭大道', pinyin: 'linhangdadao', py: 'lhdd', lat: '30.110992', lng: '120.439538' },
+  { id: 201, name: '鉴水路', pinyin: 'jianshuilu', py: 'jsl', lat: '30.098647', lng: '120.456983' },
+  { id: 202, name: '越州大道', pinyin: 'yuezhoudadao', py: 'yzdd', lat: '30.088065', lng: '120.4796' },
+  { id: 203, name: '中国轻纺城', pinyin: 'zhongguoqingfangcheng', py: 'zgqfc', lat: '30.082105', lng: '120.489642' }] };exports.default = _default;
 
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
+/***/ }),
 
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
+/***/ 65:
+/*!*********************************************************!*\
+  !*** E:/HBuilderProjects/passenger/static/data/city.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  metroMapUrl: 'https://metroman.cn/metro/',
+  metroPlanUrl: 'https://metroman.cn/metro/plan/',
+  metroMoreUrl: 'https://metroman.cn/mp/chinhoyoo/more/',
+  cityList: [
+  { key: "bj", lat: 39.908065, lng: 116.411502, name: "北京", english: "Beijing", pinyin: "beijing", py: "bj", other: "", now: "1", plan: "1", more: "0" },
+  { key: "sh", lat: 31.232844, lng: 121.47537, name: "上海", english: "Shanghai", pinyin: "shanghai", py: "sh", other: "", now: "1", plan: "1", more: "0" },
+  { key: "gz", lat: 23.111459, lng: 113.324103, name: "广州 佛山", english: "Guangzhou", pinyin: "guangzhou", py: "gz", other: "foshan|fs", now: "1", plan: "1", more: "0" },
+  { key: "sz", lat: 22.541455, lng: 114.052827, name: "深圳", english: "Shenzhen", pinyin: "shenzhen", py: "sz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "hk", lat: 22.284659, lng: 114.158185, name: "香港", english: "Hong Kong", pinyin: "xianggang", py: "xg", other: "hk|hongkong|hong kong", now: "1", plan: "1", more: "0" },
+  { key: "tb", lat: 25.046256, lng: 121.51753, name: "台北", english: "Taipei", pinyin: "taibei", py: "tb", other: "tp|taipei", now: "1", plan: "1", more: "0" },
+  { key: "am", lat: 22.150129, lng: 113.575533, name: "澳门", english: "Macau", pinyin: "aomen", py: "am", other: "macau", now: "1", plan: "1", more: "0" },
+  { key: "nj", lat: 32.040995, lng: 118.78408, name: "南京", english: "Nanjing", pinyin: "nanjing", py: "nj", other: "", now: "1", plan: "1", more: "0" },
+  { key: "tj", lat: 39.137775, lng: 117.21161, name: "天津", english: "Tianjin", pinyin: "tianjin", py: "tj", other: "", now: "1", plan: "1", more: "0" },
+  { key: "cq", lat: 29.552992, lng: 106.548273, name: "重庆", english: "Chongqing", pinyin: "chongqing", py: "cq", other: "", now: "1", plan: "1", more: "0" },
+  { key: "cd", lat: 30.658071, lng: 104.065798, name: "成都", english: "Chengdu", pinyin: "chengdu", py: "cd", other: "", now: "1", plan: "1", more: "0" },
+  { key: "wh", lat: 30.585299, lng: 114.286584, name: "武汉", english: "Wuhan", pinyin: "wuhan", py: "wh", other: "", now: "1", plan: "1", more: "0" },
+  { key: "hz", lat: 30.279156, lng: 120.165666, name: "杭州 绍兴 海宁", english: "Hangzhou", pinyin: "hangzhou", py: "hz", other: "shaoxing|sx|haining|hn", now: "1", plan: "1", more: "0" },
+  { key: "xa", lat: 34.269878, lng: 108.947143, name: "西安", english: "Xi'an", pinyin: "xian", py: "xa", other: "", now: "1", plan: "1", more: "0" },
+  { key: "su", lat: 31.29273, lng: 120.549292, name: "苏州", english: "Suzhou", pinyin: "suzhou", py: "sz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "sy", lat: 41.792353, lng: 123.433386, name: "沈阳", english: "Shenyang", pinyin: "shenyang", py: "sy", other: "", now: "1", plan: "1", more: "0" },
+  { key: "cc", lat: 43.833106, lng: 125.365183, name: "长春", english: "Changchun", pinyin: "changchun", py: "cc", other: "", now: "1", plan: "1", more: "0" },
+  { key: "hb", lat: 45.75837, lng: 126.643805, name: "哈尔滨", english: "Harbin", pinyin: "harbin", py: "hrb", other: "", now: "1", plan: "1", more: "0" },
+  { key: "cs", lat: 28.195185, lng: 112.976357, name: "长沙", english: "Changsha", pinyin: "changsha", py: "cs", other: "", now: "1", plan: "1", more: "0" },
+  { key: "nb", lat: 29.873025, lng: 121.548731, name: "宁波", english: "Ningbo", pinyin: "ningbo", py: "nb", other: "", now: "1", plan: "1", more: "0" },
+  { key: "wx", lat: 31.589211, lng: 120.306895, name: "无锡", english: "Wuxi", pinyin: "wuxi", py: "wx", other: "", now: "1", plan: "1", more: "0" },
+  { key: "zz", lat: 34.746867, lng: 113.655446, name: "郑州", english: "Zhengzhou", pinyin: "zhengzhou", py: "zz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "dl", lat: 38.909368, lng: 121.587378, name: "大连", english: "Dalian", pinyin: "dalian", py: "dl", other: "", now: "1", plan: "1", more: "0" },
+  { key: "km", lat: 25.013618, lng: 102.723847, name: "昆明", english: "Kunming", pinyin: "kunming", py: "km", other: "", now: "1", plan: "1", more: "0" },
+  { key: "nc", lat: 28.67542, lng: 115.903436, name: "南昌", english: "Nanchang", pinyin: "nanchang", py: "nc", other: "", now: "1", plan: "1", more: "0" },
+  { key: "qd", lat: 36.169772, lng: 120.376824, name: "青岛", english: "Qingdao", pinyin: "qingdao", py: "qd", other: "", now: "1", plan: "1", more: "0" },
+  { key: "dg", lat: 23.089687, lng: 113.860969, name: "东莞", english: "Dongguan", pinyin: "dongguan", py: "dg", other: "", now: "1", plan: "1", more: "0" },
+  { key: "nn", lat: 22.839824, lng: 108.413459, name: "南宁", english: "Nanning", pinyin: "nanning", py: "nn", other: "", now: "1", plan: "1", more: "0" },
+  { key: "fz", lat: 25.985736, lng: 119.39006, name: "福州", english: "Fuzhou", pinyin: "fuzhou", py: "fz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "hf", lat: 31.798265, lng: 117.29036, name: "合肥", english: "Hefei", pinyin: "hefei", py: "hf", other: "", now: "1", plan: "1", more: "0" },
+  { key: "sj", lat: 38.043229, lng: 114.477312, name: "石家庄", english: "Shijiazhuang", pinyin: "shijiazhuang", py: "sjz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "xm", lat: 24.602695, lng: 118.054655, name: "厦门", english: "Xiamen", pinyin: "xiamen", py: "xm", other: "", now: "1", plan: "1", more: "0" },
+  { key: "gy", lat: 26.619416, lng: 106.675967, name: "贵阳", english: "Guiyang", pinyin: "guiyang", py: "gy", other: "", now: "1", plan: "1", more: "0" },
+  { key: "gx", lat: 22.631423, lng: 120.30195, name: "高雄", english: "Kaohsiung", pinyin: "gaoxiong", py: "gx", other: "", now: "1", plan: "1", more: "0" },
+  { key: "wl", lat: 43.840204, lng: 87.574904, name: "乌鲁木齐", english: "Urumqi", pinyin: "wulumuqi", py: "wlmq", other: "urmq|urumqi", now: "1", plan: "1", more: "0" },
+  { key: "wz", lat: 27.979144, lng: 120.68513, name: "温州", english: "Wenzhou", pinyin: "wenzhou", py: "wz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "jn", lat: 36.669337, lng: 116.893471, name: "济南", english: "Jinan", pinyin: "jinan", py: "jn", other: "", now: "1", plan: "1", more: "0" },
+  { key: "lz", lat: 36.053713, lng: 103.83935, name: "兰州", english: "Lanzhou", pinyin: "lanzhou", py: "lz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "cz", lat: 31.808073, lng: 119.976048, name: "常州", english: "Changzhou", pinyin: "changzhou", py: "cz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "xz", lat: 34.207131, lng: 117.284023, name: "徐州", english: "Xuzhou", pinyin: "xuzhou", py: "xz", other: "", now: "1", plan: "1", more: "0" },
+  { key: "hh", lat: 40.821589, lng: 111.667687, name: "呼和浩特", english: "Hohhot", pinyin: "huhehaote", py: "hhht", other: "", now: "1", plan: "1", more: "0" },
+  { key: "tc", lat: 24.109887, lng: 120.615727, name: "台中", english: "Taichung", pinyin: "taizhong", py: "tz", other: "tc|taichung", now: "1", plan: "1", more: "0" },
+  { key: "ty", lat: 37.836752, lng: 112.561266, name: "太原", english: "Taiyuan", pinyin: "taiyuan", py: "ty", other: "", now: "1", plan: "1", more: "0" },
+  { key: "ly", lat: 34.670087, lng: 112.436453, name: "洛阳", english: "Luoyang", pinyin: "luoyang", py: "ly", other: "", now: "1", plan: "1", more: "0" },
+  { key: "wu", lat: 31.331765, lng: 118.374903, name: "芜湖", english: "Wuhu", pinyin: "wuhu", py: "wh", other: "", now: "1", plan: "1", more: "0" },
+  { key: "jh", lat: 30, lng: 120, name: "金华(即将开通)", english: "Jinhua", pinyin: "jinhua", py: "jh", other: "", now: "0", plan: "1", more: "0" },
+  { key: "li", lat: 30, lng: 120, name: "柳州(即将开通)", english: "Liuzhou", pinyin: "liuzhou", py: "lz", other: "", now: "0", plan: "1", more: "0" },
+  { key: "nt", lat: 30, lng: 120, name: "南通(即将开通)", english: "Nantong", pinyin: "nantong", py: "nt", other: "", now: "0", plan: "1", more: "0" },
+  { key: "tz", lat: 30, lng: 120, name: "台州(即将开通)", english: "Taizhou", pinyin: "taizhou", py: "tz", other: "", now: "0", plan: "1", more: "0" }],
 
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
+  hotList: [
+  { key: "bj", hot: ["北京南站", "北京西站", "北京站", "3号航站楼", "2号航站楼", "东直门", "西直门", "天安门东", "前门", "国贸"] },
+  { key: "sh", hot: ["人民广场", "虹桥火车站", "上海火车站", "上海南站", "浦东国际机场", "徐家汇", "南京西路", "陕西南路", "中山公园", "陆家嘴"] },
+  { key: "gz", hot: ["体育西路", "广州南站", "广州火车站", "广州东站", "机场南", "机场北", "珠江新城", "天河客运站", "嘉禾望岗", "海珠广场"] },
+  { key: "sz", hot: ["深圳北站", "福田", "机场", "车公庙", "罗湖", "福田口岸", "会展中心", "深圳湾公园", "老街", "高新园"] },
+  { key: "hk", hot: ["中环", "金钟", "机场", "九龙", "红磡", "尖沙咀", "迪士尼", "屯门", "落马洲", "罗湖"] },
+  { key: "tb", hot: ["台北车站", "机场第一航厦", "机场第二航厦", "台北101/世茂", "西门", "动物园", "中正纪念堂", "忠孝复兴", "市政府", "淡水"] },
+  { key: "am", hot: ["马会", "莲花口岸", "科大", "机场", "氹仔码头"] },
+  { key: "nj", hot: ["新街口", "南京南站", "南京站", "禄口机场", "夫子庙", "鼓楼", "武定门", "奥体中心", "大行宫", "鸡鸣寺"] },
+  { key: "tj", hot: ["天津站", "西站", "南站", "滨海国际机场", "营口道", "下瓦房", "泰达", "文化中心", "鼓楼", "塘沽"] },
+  { key: "cq", hot: ["较场口", "小什字", "两路口", "沙坪坝", "重庆北站北广场", "重庆北站南广场", "观音桥", "南坪", "临江门", "江北机场T3航站楼"] },
+  { key: "cd", hot: ["天府广场", "成都东客站", "成都南站", "春熙路", "双流机场1航站楼", "双流机场2航站楼", "犀浦", "中医大省医院", "世纪城", "金融城"] },
+  { key: "wh", hot: ["武昌火车站", "汉口火车站", "武汉火车站", "光谷广场", "江汉路", "街道口", "中山公园", "天河机场", "循礼门", "楚河汉街"] },
+  { key: "hz", hot: ["杭州东站", "城站", "龙翔桥", "武林广场", "客运中心", "凤起路", "市民中心", "余杭高铁站", "钱江路", "西湖文化广场"] },
+  { key: "xa", hot: ["北客站", "钟楼", "五路口", "小寨", "北大街", "大雁塔", "大唐芙蓉园", "行政中心", "半坡", "三桥"] },
+  { key: "su", hot: ["苏州火车站", "高铁苏州北站", "苏州乐园", "乐桥", "相门", "临顿路", "山塘街", "时代广场", "东方之门", "北寺塔"] },
+  { key: "sy", hot: ["沈阳北站", "沈阳站", "中街", "北陵公园", "工业展览馆", "太原街", "市图书馆", "市府广场", "营盘街", "辽宁大学"] },
+  { key: "cc", hot: ["长春站", "长春站北", "长春西站", "人民广场", "解放大路", "东北师大", "卫星广场", "长影世纪城", "伪满皇宫", "职业学院"] },
+  { key: "hb", hot: ["哈尔滨西站", "博物馆", "医大二院", "新疆大街", "学府路", "黑龙江大学", "哈工大", "医大一院", "工程大学", "凯盛源广场"] },
+  { key: "cs", hot: ["长沙火车南站", "长沙火车站", "机场", "橘子洲", "五一广场", "湘江中路", "黄兴广场", "中信广场", "湖南大学", "观沙岭"] },
+  { key: "nb", hot: ["宁波火车站", "栎社国际机场", "客运中心", "鼓楼", "城隍庙", "东门口", "西门口", "海晏北路", "宁波大学", "中河路"] },
+  { key: "wx", hot: ["无锡火车站", "无锡东站", "三阳广场", "太湖广场", "南禅寺", "梅园开原寺", "市民中心", "江南大学", "人民医院", "清名桥"] },
+  { key: "zz", hot: ["郑州东站", "郑州火车站", "新郑机场", "二七广场", "关虎屯", "会展中心", "紫荆山", "龙子湖", "绿城广场", "郑州大学"] },
+  { key: "dl", hot: ["大连北站", "大连站", "机场", "星海广场", "西安路", "青泥洼桥", "中山广场", "人民广场", "兴工街", "旅顺"] },
+  { key: "km", hot: ["昆明火车南站", "昆明火车站", "机场中心", "五一路", "东风广场", "北部汽车站", "东部汽车站", "南部汽车站", "大学城", "春融街"] },
+  { key: "nc", hot: ["南昌西站", "八一广场", "滕王阁", "八一馆", "九龙湖南", "卫东", "地铁大厦", "双港", "艾溪湖东", "奥体中心"] },
+  { key: "qd", hot: ["青岛北站", "青岛站", "五四广场", "燕儿岛路", "李村", "会展中心", "中山公园", "错埠岭", "石老人浴场", "海洋大学"] },
+  { key: "dg", hot: ["东莞火车站", "虎门火车站", "展览中心", "东城", "鸿福路", "寮厦", "旗峰公园"] },
+  { key: "nn", hot: ["火车东站", "火车站", "朝阳广场", "广西大学", "金湖广场", "江南客运站", "埌东客运站", "总部基地", "会展中心", "安吉客运站"] },
+  { key: "fz", hot: ["福州南站", "福州火车站", "南门兜", "东街口", "屏山", "福州大学", "水都", "宁化", "五里亭", "鼓山"] },
+  { key: "hf", hot: ["合肥南站", "合肥火车站", "大东门", "四牌楼", "三里庵", "汽车西站", "滨湖会展中心", "万达城", "大蜀山"] },
+  { key: "sj", hot: ["石家庄站", "石家庄东站", "新百广场", "解放广场", "北国商城", "博物院", "火炬广场", "白佛", "烈士陵园", "西王"] },
+  { key: "xm", hot: ["厦门北站", "镇海路", "湖滨东路", "中山公园", "莲坂", "乌石浦", "集美学村", "园博苑", "集美软件园"] },
+  { key: "gy", hot: ["贵阳北站", "贵阳火车站", "喷水池", "国际生态会议中心", "观山湖公园", "中山西路", "河滨公园"] },
+  { key: "gx", hot: ["高雄国际机场", "高雄车站", "左营", "美丽岛", "三多商圈", "中央公园", "盐埕埔", "凤山", "五块厝", "桥头火车站"] },
+  { key: "wl", hot: ["国际机场", "八楼", "铁路局", "植物园", "新疆图书馆"] },
+  { key: "wz", hot: ["动车南", "惠民路", "奥体中心", "龙霞路", "德政", "科技城", "新桥", "瑶溪", "三垟湿地"] },
+  { key: "jn", hot: ["济南西站", "方特", "大学城", "园博园", "创新谷", "工研院"] },
+  { key: "lz", hot: ["兰州西站北广场", "小西湖", "文化宫", "东方红广场", "五里铺"] },
+  { key: "cz", hot: ["常州北站", "环球港", "奥体中心", "市民广场", "文化宫"] },
+  { key: "xz", hot: ["人民广场", "徐医附院", "彭城广场", "医科大学", "徐州东站"] },
+  { key: "hh", hot: ["新华广场", "呼和浩特东站", "内蒙古展览馆", "内蒙古博物院", "坝堰（机场）"] },
+  { key: "tc", hot: ["高铁台中站", "北屯总站", "市政府"] },
+  { key: "ty", hot: ["大北门", "大南门", "南中环"] },
+  { key: "ly", hot: ["牡丹广场", "解放路", "青年宫"] },
+  { key: "wu", hot: ["鸠兹广场", "奧体中心", "博览中心"] }] };exports.default = _default;
 
 /***/ })
-]]);
+
+}]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map
