@@ -10,8 +10,8 @@
 		<van-tree-select
 			:items='stationData'
 			:main-active-index='mainActiveIndex'
-			height='549'
-			max-height='604'
+			height='1094rpx'
+			max-height='1208rpx'
 			@click-item='onClickItem'
 			@click-nav='onClickNav'>
 		</van-tree-select>

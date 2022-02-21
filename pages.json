@@ -70,7 +70,18 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "车站信息",
-				"navigationBarBackgroundColor": "#ffffff"
+				"navigationBarBackgroundColor": "#ffffff",
+				"enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/out/map/map",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "地图",
+				"navigationBarBackgroundColor": "#ffffff",
+                "enablePullDownRefresh": false
             }
             
         }
